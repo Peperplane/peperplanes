@@ -1,0 +1,75 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+<main>
+  <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+    <div class="col-md-5 p-lg-5 mx-auto my-5">
+      <h1 class="display-4 fw-normal">Story Planes<br>
+      <img src=" {% static 'images/PeperPlane_Trans.png' %}" style="padding-bottom: 5px; padding-top: 0px;"  width="105" height="105" loading="lazy"></h1>
+      
+    </div>
+    <div class="product-device shadow-sm d-none d-md-block"></div>
+    <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+  </div>
+
+
+  <center>
+    <h2>Short Stories</h2>
+  </center>
+    <hr class="my-5">
+    <div style="margin: 1%;">
+    <div class="row " data-masonry='{"percentPosition": true }'>
+      {% for story in short_storys %}
+      <div class="col-sm-6 col-lg-4 mb-4">
+        <div class="card">
+            <div class="card">
+              {% if story.image %}
+              <img src="{{story.image.url}}" class="card-img-top" alt="Image cap" width="100%" height="400">
+              {% endif %}
+                
+                <div class="card-body">
+                    <h5 class="card-title">{{story.title}}</h5>
+                    <p>{{story.story_info|linebreaks}}</p>
+                </div>
+            </div>
+           
+            
+        </div>
+      </div>
+      
+      {% endfor %}
+     
+    </div>
+    </div>
+
+
+  <center>
+  <h2>Story Collection</h2>
+</center>
+  <hr class="my-5">
+  <div style="margin: 1%;">
+  <div class="row " data-masonry='{"percentPosition": true }'>
+    {% for story in playlist %}
+    <div class="col-sm-6 col-lg-4 mb-4">
+      <div class="card">
+          <div class="card">
+              <img src="{{story.image.url}}" class="card-img-top" alt="Image cap" width="100%" height="400">
+              <div class="card-body">
+                  <h5 class="card-title">{{story.playlist_name}}</h5>
+                  <a href="{% url 'storyplaylist' story.slug %}" class="btn btn-primary">Let's Take Off  </a>
+              </div>
+          </div>
+         
+          
+      </div>
+    </div>
+    
+    {% endfor %}
+   
+  </div>
+  </div>
+  </main>
+  
+  
+  
+{% endblock content %}

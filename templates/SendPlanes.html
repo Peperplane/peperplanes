@@ -1,0 +1,50 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+<main>
+  <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+    <div class="col-md-5 p-lg-5 mx-auto my-5">
+      <h1 class="display-4 fw-normal">  We PeperPlanes
+      <img src=" {% static 'images/PeperPlane_Trans.png' %}" style="padding-bottom: 5px; padding-top: 0px;"  width="105" height="105" loading="lazy"></h1>
+      
+      
+    </div>
+    <div class="product-device shadow-sm d-none d-md-block"></div>
+    <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+  </div>
+  
+  <section id="about" style="max-width: 70%;">
+      <h1></h1>
+      <p>Hello Pilots!</p>
+  <p>Unleash your imagination, share, discover, and be inspired. Join our vibrant community of storytellers on Paper Planes.</p>
+  <p>At Paper Planes, we believe in the power of storytelling to transport us to new worlds and ignite our imagination. Our platform is a haven for both creators and explorers, where you can let your voice be heard and embark on a journey beyond the ordinary.</p>
+  <p>Whether you're a seasoned writer, an aspiring filmmaker, or simply a lover of great stories, Paper Planes provides a space to showcase your talents and connect with like-minded individuals. Share your written tales, captivating videos, and mesmerizing visuals that bring stories to life.</p>
+  <p>Immerse yourself in a diverse collection of stories, from thrilling adventures to heartwarming narratives. Discover hidden gems created by fellow pilots who are passionate about crafting unforgettable experiences. Engage in discussions, provide feedback, and uplift each other as we collectively push the boundaries of storytelling.</p>
+  <p>Join us on this exhilarating adventure and become part of a community where stories know no bounds. Welcome to Paper Planes, where stories come alive.</p>
+  
+    </section>
+  
+    <div class="container py-5">
+      
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="contact-form">
+            
+  
+            <h2>Send Story</h2>
+            <p>If you have any questions, inquiries, or would like to collaborate, please fill out the form below and we'll get back to you as soon as possible.</p>
+            <form  method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              {{form.as_p}}
+              <button type="submit" class="btn btn-primary" >Send Message</button>
+            </form>
+            
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+  </main>
+  
+{% endblock content %}

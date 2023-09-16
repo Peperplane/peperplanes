@@ -1,0 +1,53 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+<main>
+    <!-- Display a list of stories -->
+    
+    {% for story in storylist %}
+    <div class="container mt-5">
+        <h1>{{story.title}}</h1>
+        <div>
+            <h4>{{story.subtitle}}</h4>
+        <div class="jumbotron mt-4">
+          <p>
+            {{story.story_info|linebreaks}}
+          </p>
+         </div>
+      </div>
+    {% endfor %}
+      
+    <p >
+      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+        View Comments
+      </button>
+    </p>
+    <div style="min-height: 120px;">
+      <div class="collapse collapse-horizontal" id="collapseWidthExample">
+        <div class="card card-body" style="width: 500px; margin-left: 100px;">
+          <form action="/scomment/" method="post">
+            {% csrf_token %}
+          <input type="text" style="margin: 10px;" name="comment">
+          <input type="hidden" name="story" value="{{slug}}">
+          <button type="submit" class="btn btn-primary" style="max-width: 150px; margin: 10px;">Comment</button>
+          </form>
+          <ul style="list-style: none;"> 
+            {% for comment in comments %}
+            <div style="border: 3px solid black; border-radius: 5px; padding: 5px; margin-bottom: 5px;">
+              <li><u>User</u> </li>
+            <li><p>{{comment.msg}}</p></li>
+            </div>
+            {% endfor %}
+            
+    
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+      
+    
+    </main> 
+{% endblock content %}
+  
+

@@ -1,0 +1,73 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+<center>
+  <iframe width="90%" height="560px%"
+  src="https://www.youtube.com/embed/{{video.url}}" style="margin: 15px;">
+  </iframe>
+</center>
+
+<p style="margin-left: 100px;">
+  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+    View Comments
+  </button>
+</p>
+<div style="min-height: 120px;">
+  <div class="collapse collapse-horizontal" id="collapseWidthExample">
+    <div class="card card-body" style="width: 500px; margin-left: 100px;">
+      <form action="/vcomment/" method="post">
+        {% csrf_token %}
+      <input type="text" style="margin: 10px;" name="comment">
+      <input type="hidden" name="video" value="{{video.slug}}">
+      <button type="submit" class="btn btn-primary" style="max-width: 150px; margin: 10px;">Comment</button>
+      </form>
+      <ul style="list-style: none;"> 
+        {% for comment in comments %}
+        <div style="border: 3px solid black; border-radius: 5px; padding: 5px; margin-bottom: 5px;">
+          <li><u>User</u> </li>
+        <li><p>{{comment.msg}}</p></li>
+        </div>
+        {% endfor %}
+        
+
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% if videos %}
+<section class="py-5">
+  <div class="container px-5">
+    <h2 class="fw-bolder fs-5 mb-4">Simllar Videos</h2>
+      <div class="row gx-10">
+          {% for video in videos %}
+          {% if video.slug != slug %}
+          <div class="col-lg-4 mb-10">
+              
+            <div class="card h-100 shadow border-0">
+                <img class="card-img-top" src="{{video.image.url}}" alt="..." style="max-height: 200px;"/>
+                <div class="card-body p-4">
+                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{video.genres}}</div>
+                    <a class="text-decoration-none link-dark stretched-link" href="#!"><div class="h5 card-title mb-3">{{video.title}}</div></a>
+                    <p class="card-text mb-0">{{video.desc|truncatechars:70}}</p><br>
+                     <a class="stretched-link text-decoration-none" href="{% url 'videoinfo' video.slug %}" style="border: 1px solid black; padding-top: 3px; padding-bottom: 3px; padding-left: 10px; padding-right: 10px;margin-top :5px ;border-radius: 5px;">
+                            Watch Now
+                        </a>
+                        <div class="text-muted">{{video.time_stamp}}</div>
+                </div>
+            </div>
+            
+        </div>
+          {% endif %}
+          
+          
+          
+          {% endfor %}
+      </div>
+  </div>
+</section>
+{% endif %}
+
+
+{% endblock content %}

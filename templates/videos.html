@@ -1,0 +1,511 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+<main>
+  <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light" >
+    <div class="col-md-5 p-lg-5 mx-auto my-5" >
+      <h1 class="display-4 fw-normal"> &nbsp; Video Planes
+      <img src="{% static 'images/PeperPlane_Trans.png' %}" style="padding-bottom: 5px; padding-top: 0px;"  width="105" height="105" loading="lazy"></h1>
+
+        <p class="lead text-muted">
+          Discover a world of captivating videos and immerse yourself in a wide range of content. From thrilling adventures to educational documentaries, our platform offers an extensive collection of videos to entertain, inform, and inspire.</p>
+          <p>
+          
+
+          <!--
+          <a href="#" class="btn btn-primary my-2">Main call to action</a>
+          <a href="#" class="btn btn-secondary my-2">Secondary action</a> -->
+        </p>
+      </div>
+    </div>
+
+    {% if english %}
+<section class="py-5">
+  <div class="container px-5">
+      <h2 class="fw-bolder fs-5 mb-4">English</h2>
+      <div class="row gx-10">
+          {% for video in english %}
+          <div class="col-lg-4 mb-10">
+              
+              <div class="card h-100 shadow border-0">
+                  <img class="card-img-top" src="{{video.image.url}}" alt="..." style="max-height: 200px;"/>
+                  <div class="card-body p-4">
+                      <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{video.genres}}</div>
+                      <a class="text-decoration-none link-dark stretched-link" href="#!"><div class="h5 card-title mb-3">{{video.title}}</div></a>
+                      <p class="card-text mb-0">{{video.desc|truncatechars:70}}</p><br>
+                       <a class="stretched-link text-decoration-none" href="{% url 'videoinfo' video.slug %}" style="border: 1px solid black; padding-top: 3px; padding-bottom: 3px; padding-left: 10px; padding-right: 10px;margin-top :5px ;border-radius: 5px;">
+                              Watch Now
+                          </a>
+                          <div class="text-muted">{{video.time_stamp}}</div>
+                  </div>
+              </div>
+              
+          </div>
+          
+          
+          {% endfor %}
+      </div>
+      <div class="text-end mb-5 mb-xl-0">
+          <a class="text-decoration-none" href="{% url 'all' English %}">
+              More stories
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+              </svg>
+          </a>
+      </div>
+  </div>
+</section>
+{% endif %}
+
+
+{% if telugu %}
+<section class="py-5">
+  <div class="container px-5">
+      <h2 class="fw-bolder fs-5 mb-4">Telugu</h2>
+      <div class="row gx-10">
+        <ul class="cards">
+            
+          {% for video in telugu %}
+          
+          <div class="col-lg-4 mb-10">
+            
+              <div class="card h-100 shadow border-0">
+                  <img class="card-img-top" src="{{video.image.url}}" alt="..." style="max-height: 200px;"/>
+                  <div class="card-body p-4">
+                      <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{video.genres}}</div>
+                      <a class="text-decoration-none link-dark stretched-link" href="#!"><div class="h5 card-title mb-3">{{video.title}}</div></a>
+                      <p class="card-text mb-0">{{video.desc|truncatechars:70}}</p><br>
+                       <a class="stretched-link text-decoration-none" href="{% url 'videoinfo' video.slug %}" style="border: 1px solid black; padding-top: 3px; padding-bottom: 3px; padding-left: 10px; padding-right: 10px;margin-top :5px ;border-radius: 5px;">
+                              Watch Now
+                          </a>
+                          <div class="text-muted">{{video.time_stamp}}</div>
+                  </div>
+              </div>
+            
+          </div>
+        
+          {% endfor %}
+        
+    </ul>
+      </div>
+      <div class="text-end mb-5 mb-xl-0">
+
+          <a class="text-decoration-none" href="{% url 'all' 'Telugu' %}">
+              More stories
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+              </svg>
+          </a>
+      </div>
+  </div>
+</section>
+{% endif %}
+
+{% if videos %}
+<section class="py-5">
+    <div class="container px-5">
+        <h2 class="fw-bolder fs-5 mb-4">Latest Stories</h2>
+        <div class="row gx-10">
+            <ul class="cards">
+            {% for video in videos %}
+            <div class="col-lg-4 mb-10">
+                
+                <div class="card h-100 shadow border-0">
+                    <img class="card-img-top" src="{{video.image.url}}" alt="..." style="max-height: 200px;"/>
+                    <div class="card-body p-4">
+                        <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{video.genres}}</div>
+                        <a class="text-decoration-none link-dark stretched-link" href="#!"><div class="h5 card-title mb-3">{{video.title}}</div></a>
+                        <p class="card-text mb-0">{{video.desc|truncatechars:70}}</p><br>
+                         <a class="stretched-link text-decoration-none" href="{% url 'videoinfo' video.slug %}" style="border: 1px solid black; padding-top: 3px; padding-bottom: 3px; padding-left: 10px; padding-right: 10px;margin-top :5px ;border-radius: 5px;">
+                                Watch Now
+                            </a>
+                            <div class="text-muted">{{video.time_stamp}}</div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            
+            {% endfor %}
+            </ul>
+        </div>
+      
+    </div>
+</section>
+{% endif %}
+  
+{% if fant %}
+<section class="py-5">
+  <div class="container px-5">
+      <h2 class="fw-bolder fs-5 mb-4">Fantasy</h2>
+      <div class="row gx-10">
+        <ul class="cards">
+          {% for fant_v in fant %}
+          <div class="col-lg-4 mb-10">
+              
+              <div class="card h-100 shadow border-0">
+                  <img class="card-img-top" src="{{fant_v.image.url}}" alt="..." style="max-height: 200px;"/>
+                  <div class="card-body p-4">
+                      <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{fant_v.genres}}</div>
+                      <a class="text-decoration-none link-dark stretched-link" href="#!"><div class="h5 card-title mb-3">{{fant_v.title}}</div></a>
+                      <p class="card-text mb-0">{{fant_v.desc|truncatechars:70}}</p><br>
+                       <a class="stretched-link text-decoration-none" href="{% url 'videoinfo' fant_v.slug %}" style="border: 1px solid black; padding-top: 3px; padding-bottom: 3px; padding-left: 10px; padding-right: 10px;margin-top :5px ;border-radius: 5px;">
+                              Watch Now
+                          </a>
+                          <div class="text-muted">{{fant_v.time_stamp}}</div>
+                  </div>
+              </div>
+              
+          </div>
+          
+          
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="text-end mb-5 mb-xl-0">
+          <a class="text-decoration-none" href="{% url 'all' 'Fantasy' %}">
+              More stories
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+              </svg>
+          </a>
+      </div>
+  </div>
+</section>
+
+{% endif %}
+
+{% if moral %}
+<section class="py-5">
+  <div class="container px-5">
+      <h2 class="fw-bolder fs-5 mb-4">Moral</h2>
+      <div class="row gx-10">
+        <ul class="cards">
+          {% for video in moral %}
+          <div class="col-lg-4 mb-10">
+              
+              <div class="card h-100 shadow border-0">
+                  <img class="card-img-top" src="{{video.image.url}}" alt="..." style="max-height: 200px;"/>
+                  <div class="card-body p-4">
+                      <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{video.genres}}</div>
+                      <a class="text-decoration-none link-dark stretched-link" href="#!"><div class="h5 card-title mb-3">{{video.title}}</div></a>
+                      <p class="card-text mb-0">{{video.desc|truncatechars:70}}</p><br>
+                       <a class="stretched-link text-decoration-none" href="{% url 'videoinfo' video.slug %}" style="border: 1px solid black; padding-top: 3px; padding-bottom: 3px; padding-left: 10px; padding-right: 10px;margin-top :5px ;border-radius: 5px;">
+                              Watch Now
+                          </a>
+                          <div class="text-muted">{{video.time_stamp}}</div>
+                  </div>
+              </div>
+              
+          </div>
+          
+          
+          {% endfor %}
+          </ul>
+      </div>
+      <div class="text-end mb-5 mb-xl-0">
+          <a class="text-decoration-none" href="{% url 'all' 'Moral' %}">
+              More stories
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+              </svg>
+          </a>
+      </div>
+  </div>
+</section>
+{% endif %}
+
+
+{% if horror %}
+<section class="py-5">
+  <div class="container px-5">
+      <h2 class="fw-bolder fs-5 mb-4">Horror</h2>
+      <div class="row gx-10">
+        <ul class="cards">
+          {% for video in horror %}
+          <div class="col-lg-4 mb-10">
+              
+              <div class="card h-100 shadow border-0">
+                  <img class="card-img-top" src="{{video.image.url}}" alt="..." style="max-height: 200px;"/>
+                  <div class="card-body p-4">
+                      <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{video.genres}}</div>
+                      <a class="text-decoration-none link-dark stretched-link" href="#!"><div class="h5 card-title mb-3">{{video.title}}</div></a>
+                      <p class="card-text mb-0">{{video.desc|truncatechars:70}}</p><br>
+                       <a class="stretched-link text-decoration-none" href="{% url 'videoinfo' video.slug %}" style="border: 1px solid black; padding-top: 3px; padding-bottom: 3px; padding-left: 10px; padding-right: 10px;margin-top :5px ;border-radius: 5px;">
+                              Watch Now
+                          </a>
+                          <div class="text-muted">{{video.time_stamp}}</div>
+                  </div>
+              </div>
+              
+          </div>
+          
+          
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="text-end mb-5 mb-xl-0">
+          <a class="text-decoration-none" href="{% url 'all' 'Horror' %}">
+              More stories
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+              </svg>
+          </a>
+      </div>
+  </div>
+</section>
+{% endif %}
+
+
+
+{% if comedy %}
+<section class="py-5">
+  <div class="container px-5">
+      <h2 class="fw-bolder fs-5 mb-4">comedy</h2>
+      <div class="row gx-10">
+        <ul class="cards">
+          {% for video in comedy %}
+          <div class="col-lg-4 mb-10">
+              
+              <div class="card h-100 shadow border-0">
+                  <img class="card-img-top" src="{{video.image.url}}" alt="..." style="max-height: 200px;"/>
+                  <div class="card-body p-4">
+                      <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{video.genres}}</div>
+                      <a class="text-decoration-none link-dark stretched-link" href="#!"><div class="h5 card-title mb-3">{{video.title}}</div></a>
+                      <p class="card-text mb-0">{{video.desc|truncatechars:70}}</p><br>
+                       <a class="stretched-link text-decoration-none" href="{% url 'videoinfo' video.slug %}" style="border: 1px solid black; padding-top: 3px; padding-bottom: 3px; padding-left: 10px; padding-right: 10px;margin-top :5px ;border-radius: 5px;">
+                              Watch Now
+                          </a>
+                          <div class="text-muted">{{video.time_stamp}}</div>
+                  </div>
+              </div>
+              
+          </div>
+          
+          
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="text-end mb-5 mb-xl-0">
+          <a class="text-decoration-none" href="{% url 'all' 'Comedy' %}">
+              More stories
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+              </svg>
+          </a>
+      </div>
+  </div>
+</section>
+{% endif %}
+
+
+
+
+{% if action %}
+
+
+<section class="py-5">
+  <div class="container px-5">
+      <h2 class="fw-bolder fs-5 mb-4">Action</h2>
+      <div class="row gx-10">
+          {% for video in action %}
+          <div class="col-lg-4 mb-10">
+              
+              <div class="card h-100 shadow border-0">
+                  <img class="card-img-top" src="{{video.image.url}}" alt="..." style="max-height: 200px;"/>
+                  <div class="card-body p-4">
+                      <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{video.genres}}</div>
+                      <a class="text-decoration-none link-dark stretched-link" href="#!"><div class="h5 card-title mb-3">{{video.title}}</div></a>
+                      <p class="card-text mb-0">{{video.desc|truncatechars:70}}</p><br>
+                       <a class="stretched-link text-decoration-none" href="{% url 'videoinfo' video.slug %}" style="border: 1px solid black; padding-top: 3px; padding-bottom: 3px; padding-left: 10px; padding-right: 10px;margin-top :5px ;border-radius: 5px;">
+                              Watch Now
+                        </a>
+                        <div class="text-muted" style="padding: 5px;">{{video.time_stamp}}</div>
+                  </div>
+              </div>
+              
+          </div>
+          
+          
+          {% endfor %}
+      </div>
+      <div class="text-end mb-5 mb-xl-0">
+          <a class="text-decoration-none" href="{% url 'all' 'Action' %}">
+              More stories
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+              </svg>
+          </a>
+      </div>
+  </div>
+</section>
+{% endif %}
+
+
+
+{% if suspence %}
+<section class="py-5">
+  <div class="container px-5">
+      <h2 class="fw-bolder fs-5 mb-4">Suspence</h2>
+      <div class="row gx-10">
+        <ul class="cards">
+          {% for video in suspence %}
+          <div class="col-lg-4 mb-10">
+              
+              <div class="card h-100 shadow border-0">
+                  <img class="card-img-top" src="{{video.image.url}}" alt="..." style="max-height: 200px;"/>
+                  <div class="card-body p-4">
+                      <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{video.genres}}</div>
+                      <a class="text-decoration-none link-dark stretched-link" href="#!"><div class="h5 card-title mb-3">{{video.title}}</div></a>
+                      <p class="card-text mb-0">{{video.desc|truncatechars:70}}</p><br>
+                       <a class="stretched-link text-decoration-none" href="{% url 'videoinfo' video.slug %}" style="border: 1px solid black; padding-top: 3px; padding-bottom: 3px; padding-left: 10px; padding-right: 10px;margin-top :5px ;border-radius: 5px;">
+                              Watch Now
+                          </a>
+                          <div class="text-muted">{{video.time_stamp}}</div>
+                  </div>
+              </div>
+              
+          </div>
+          
+          
+          {% endfor %}
+          <ul class="cards">
+      </div>
+      <div class="text-end mb-5 mb-xl-0">
+          <a class="text-decoration-none" href="{% url 'all' 'Suspence' %}">
+              More stories
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+              </svg>
+          </a>
+      </div>
+  </div>
+</section>
+{% endif %}
+
+{% if scifi %}
+<section class="py-5">
+  <div class="container px-5">
+      <h2 class="fw-bolder fs-5 mb-4">Sci-Fi</h2>
+      <div class="row gx-10">
+        <ul class="cards">
+          {% for video in scifi %}
+          <div class="col-lg-4 mb-10">
+              
+              <div class="card h-100 shadow border-0">
+                  <img class="card-img-top" src="{{video.image.url}}" alt="..." style="max-height: 200px;"/>
+                  <div class="card-body p-4">
+                      <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{video.genres}}</div>
+                      <a class="text-decoration-none link-dark stretched-link" href="#!"><div class="h5 card-title mb-3">{{video.title}}</div></a>
+                      <p class="card-text mb-0">{{video.desc|truncatechars:70}}</p><br>
+                       <a class="stretched-link text-decoration-none" href="{% url 'videoinfo' video.slug %}" style="border: 1px solid black; padding-top: 3px; padding-bottom: 3px; padding-left: 10px; padding-right: 10px;margin-top :5px ;border-radius: 5px;">
+                              Watch Now
+                          </a>
+                          <div class="text-muted">{{video.time_stamp}}</div>
+                  </div>
+              </div>
+              
+          </div>
+          
+          
+          {% endfor %}
+          <ul class="cards">
+      </div>
+      <div class="text-end mb-5 mb-xl-0">
+          <a class="text-decoration-none" href="{% url 'all' 'Sci-Fi' %}">
+              More stories
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+              </svg>
+          </a>
+      </div>
+  </div>
+</section>
+  
+{% endif %}
+
+{% if others %}
+<section class="py-5">
+  <div class="container px-5">
+      <h2 class="fw-bolder fs-5 mb-4">Others</h2>
+      <div class="row gx-10">
+        <ul class="cards">
+          {% for video in others %}
+          <div class="col-lg-4 mb-10">
+              
+              <div class="card h-100 shadow border-0">
+                  <img class="card-img-top" src="{{video.image.url}}" alt="..." style="max-height: 200px;"/>
+                  <div class="card-body p-4">
+                      <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{video.genres}}</div>
+                      <a class="text-decoration-none link-dark stretched-link" href="#!"><div class="h5 card-title mb-3">{{video.title}}</div></a>
+                      <p class="card-text mb-0">{{video.desc|truncatechars:70}}</p><br>
+                       <a class="stretched-link text-decoration-none" href="{% url 'videoinfo' video.slug %}" style="border: 1px solid black; padding-top: 3px; padding-bottom: 3px; padding-left: 10px; padding-right: 10px;margin-top :5px ;border-radius: 5px;">
+                              Watch Now
+                          </a>
+                          <div class="text-muted">{{video.time_stamp}}</div>
+                  </div>
+              </div>
+              
+          </div>
+          
+          
+          {% endfor %}
+          <ul class="cards">
+      </div>
+      <div class="text-end mb-5 mb-xl-0">
+          <a class="text-decoration-none" href="{% url 'all' 'Others' %}">
+              More stories
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+              </svg>
+          </a>
+      </div>
+  </div>
+</section>
+  
+{% endif %}
+
+
+
+
+{% if video_playlist %}
+<section class="py-5">
+  <div class="container px-5">
+      <h2 class="fw-bolder fs-5 mb-4">Playlists</h2>
+      <div class="row gx-10">
+        <ul class="cards">
+          {% for video in video_playlist %}
+          <div class="col-lg-4 mb-10">
+              
+              <div class="card h-100 shadow border-0">
+                  <img class="card-img-top" src="{{video.image.url}}" alt="..." style="max-height: 200px;"/>
+                  <div class="card-body p-4">
+                      <a class="text-decoration-none link-dark stretched-link" href="#!"><div class="h5 card-title mb-3">{{video.playlist_name}}</div></a>
+                      <p class="card-text mb-0">{{video.desc|truncatechars:70}}</p><br>
+                       <a class="stretched-link text-decoration-none" href="{% url 'videoplaylist' video.slug %}" style="border: 1px solid black; padding-top: 3px; padding-bottom: 3px; padding-left: 10px; padding-right: 10px;margin-top :5px ;border-radius: 5px;">
+                              Watch Now
+                          </a>
+                  </div>
+              </div>
+              
+          </div>
+          
+          
+          {% endfor %}
+          <ul class="cards">
+      </div>
+      <div class="text-end mb-5 mb-xl-0">
+          <a class="text-decoration-none" href="#">
+              More stories
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+              </svg>
+          </a>
+      </div>
+  </div>
+</section>
+  
+{% endif %}
+
+</main>
+{% endblock content %}

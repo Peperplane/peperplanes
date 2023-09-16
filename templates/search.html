@@ -1,0 +1,154 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+<main>
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+      <div class="col-md-5 p-lg-5 mx-auto my-5">
+        <h1 class="display-4 fw-normal">Story Planes<br>
+        <img src=" {% static 'images/PeperPlane_Trans.png' %}" style="padding-bottom: 5px; padding-top: 0px;"  width="105" height="105" loading="lazy"></h1>
+        
+      </div>
+      <div class="product-device shadow-sm d-none d-md-block"></div>
+      <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+    </div>
+{% if playlist or short_storys  %}
+    <center><h2>Top Stories</h2></center>
+  
+  {% if short_storys %}
+
+    <h3 style="padding-left: 50px;">Short Stories</h3>
+    <hr class="my-5">
+    <div style="margin: 1%; padding-left: 100px; padding-right: 100px">
+    <div class="row " data-masonry='{"percentPosition": true }'>
+        <ul class="cards">
+      {% for story in short_storys %}
+      <div class="col-sm-6 col-lg-4 mb-4">
+        <div class="card">
+            <div class="card">
+              {% if story.image %}
+              <img src="{{story.image.url}}" class="card-img-top" alt="Image cap" width="100%" height="400">
+              {% endif %}
+                
+                <div class="card-body">
+                    <h5 class="card-title">{{story.title}}</h5>
+                    <p>{{story.story_info|linebreaks}}</p>
+                </div>
+            </div>
+           
+            
+        </div>
+      </div>
+      
+      {% endfor %}
+     <ul class="cards">
+    </div>
+    </div>
+  {% endif %}
+    
+  {% if playlist %}
+  <h3 style="padding-left: 100px;"> Story Playlists</h3>
+    <hr class="my-5">
+    <div style="margin: 1%; padding-left: 100px; padding-right: 100px;">
+    <div class="row " data-masonry='{"percentPosition": true }'>
+        <ul class="cards">
+      {% for story in playlist %}
+      <div class="col-sm-6 col-lg-4 mb-4">
+        <div class="card">
+            <div class="card">
+                <img src="{{story.image.url}}" class="card-img-top" alt="Image cap" width="100%" height="400">
+                <div class="card-body">
+                    <h5 class="card-title">{{story.playlist_name}}</h5>
+                    <a href="{% url 'storyplaylist' story.slug %}" class="btn btn-primary">Let's Take Off  </a>
+                </div>
+            </div>
+           
+            
+        </div>
+      </div>
+      
+      {% endfor %}
+      <ul class="cards">
+    </div>
+    </div>
+  {% endif %}
+  {% endif %}
+
+  {% if  videos or video_playlist %}
+  
+<center><h2> Videos</h2></center>
+
+  {% if videos %}
+<section class="py-5">
+  <div class="container px-5">
+      <h2 class="fw-bolder fs-5 mb-4">Videos</h2>
+      <div class="row gx-10">
+        <ul class="cards">
+          {% for video in videos %}
+          <div class="col-lg-4 mb-10">
+              
+              <div class="card h-100 shadow border-0">
+                  <img class="card-img-top" src="{{video.image.url}}" alt="..." style="max-height: 200px;"/>
+                  <div class="card-body p-4">
+                      <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{video.genres}}</div>
+                      <a class="text-decoration-none link-dark stretched-link" href="#!"><div class="h5 card-title mb-3">{{video.title}}</div></a>
+                      <p class="card-text mb-0">{{video.desc|truncatechars:70}}</p><br>
+                       <a class="stretched-link text-decoration-none" href="{% url 'videoinfo' video.slug %}" style="border: 1px solid black; padding-top: 3px; padding-bottom: 3px; padding-left: 10px; padding-right: 10px;margin-top :5px ;border-radius: 5px;">
+                              Watch Now
+                          </a>
+                          <div class="text-muted">{{video.time_stamp}}</div>
+                  </div>
+              </div>
+              
+          </div>
+          
+          
+          {% endfor %}
+          <ul class="cards">
+      </div>
+  </div>
+</section>
+  
+{% endif %}
+
+
+
+
+{% if video_playlist %}
+<section class="py-5">
+  <div class="container px-5">
+      <h2 class="fw-bolder fs-5 mb-4">video Playlists</h2>
+      <div class="row gx-10">
+        <ul class="cards">
+          {% for video in video_playlist %}
+          <div class="col-lg-4 mb-10">
+              
+              <div class="card h-100 shadow border-0">
+                  <img class="card-img-top" src="{{video.image.url}}" alt="..." style="max-height: 200px;"/>
+                  <div class="card-body p-4">
+                      <a class="text-decoration-none link-dark stretched-link" href="#!"><div class="h5 card-title mb-3">{{video.playlist_name}}</div></a>
+                      <p class="card-text mb-0">{{video.desc|truncatechars:70}}</p><br>
+                       <a class="stretched-link text-decoration-none" href="{% url 'videoplaylist' video.slug %}" style="border: 1px solid black; padding-top: 3px; padding-bottom: 3px; padding-left: 10px; padding-right: 10px;margin-top :5px ;border-radius: 5px;">
+                              Watch Now
+                          </a>
+                  </div>
+              </div>
+              
+          </div>
+          
+          
+          {% endfor %}
+          <ul class="cards">
+      </div>
+      
+  </div>
+</section>
+  
+{% endif %}
+        
+{% endif %}
+
+</main>
+  
+  
+  
+{% endblock content %}
