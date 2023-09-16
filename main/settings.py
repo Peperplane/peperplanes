@@ -122,7 +122,7 @@ STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR / "static"] # new
 STATIC_ROOT = BASE_DIR / "staticfiles" # new
 
-MEDIA_URL="media/"
+MEDIA_URL="https://peperplanes.onrender.com/media/"
 MEDIA_ROOT = BASE_DIR / 'media'
 
 STORAGES = {
